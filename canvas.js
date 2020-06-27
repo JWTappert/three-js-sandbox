@@ -8,7 +8,7 @@ console.log(random.getSeed());
 
 const settings = {
   suffix: `seed-${random.getSeed()}`,
-  dimensions: "A4",
+  dimensions: "A3",
 };
 
 const sketch = () => {
