@@ -8,7 +8,8 @@ console.log(random.getSeed());
 
 const settings = {
   suffix: `seed-${random.getSeed()}`,
-  dimensions: "A3",
+  // supported: A0, A1, A2, A3, A4, A5, A6
+  dimensions: [1024, 1024],
 };
 
 const sketch = () => {
@@ -23,11 +24,13 @@ const sketch = () => {
         const v = count <= 1 ? 0.5 : y / (count - 1);
         const radius = Math.abs(random.noise2D(u, v) * 0.04);
         const rotation = random.noise2D(u, v);
+        const characters = ["\\", "|"];
         points.push({
           color: random.pick(palette),
           position: [u, v],
           radius,
           rotation,
+          char: random.pick(characters),
         });
       }
     }
@@ -40,11 +43,11 @@ const sketch = () => {
   const margin = 75;
 
   return ({ context, width, height }) => {
-    context.fillStyle = "black";
+    context.fillStyle = "white";
     context.fillRect(0, 0, width, height);
 
     points.forEach((data) => {
-      const { position, radius, color, rotation } = data;
+      const { position, radius, color, rotation, char } = data;
       const [u, v] = position;
       const x = lerp(margin, width - margin, u);
       const y = lerp(margin, height - margin, v);
@@ -57,10 +60,10 @@ const sketch = () => {
       // context.fill();
 
       context.fillStyle = color;
-      context.font = `${radius * width}px "Helvetica"`;
+      context.font = `${radius * width}px "Ariel"`;
       context.translate(x, y);
       context.rotate(rotation);
-      context.fillText(".", 0, 0);
+      context.fillText(char, 0, 0);
       context.restore();
     });
   };
