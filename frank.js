@@ -12,7 +12,7 @@ const sketch = () => {
     const y = lerp(margin * 1.3, height - margin, 0);
 
     context.fillStyle = "black";
-    context.font = `20px "Ariel"`;
+    context.font = `18px "Helvetica"`;
     context.translate(x, y);
     franksLetter.map((line, index) => {
       context.fillText(line, 0, index * 25);
