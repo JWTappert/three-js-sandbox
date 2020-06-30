@@ -1,6 +1,6 @@
 # generative example
 
-Canvas example of generating some artistic looking art using some random noise functions and an array of characters.
+Canvas example of generating some cool looking art using some random noise functions and an array of characters.
 
 ### Run it
 
